@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block bodyblock %}
+<div class="container" style="height:520px;">
+    <h3>Create Your Poll</h3>
+    <form action="{% url 'newpoll' %}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="Question">Enter Your Question Here</label>
+                <input name="Question" type="text" class="form-control" id="Question" placeholder="Enter Your Question Here" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="first_option">First Option:</label>
+                <input name="first_option" type="text" class="form-control" id="first_option" placeholder="Enter Your First Option Here" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="second_option">Second Option:</label>
+                <input name="second_option" type="text" class="form-control" id="second_option" placeholder="Enter Your Second Option Here"required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="third_option">Third Option:</label>
+                <input name="third_option" type="text" class="form-control" id="third_option" placeholder="Enter Your Third Option Here" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fourth_option">Fourth Option:</label>
+                <input name="fourth_option" type="text" class="form-control" id="fourth_option" placeholder="Enter Your Fourth Option Here"required>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Create New Poll</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

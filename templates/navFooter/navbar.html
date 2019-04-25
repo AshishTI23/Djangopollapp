@@ -1,0 +1,84 @@
+
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+          <!-- <a class="navbar-brand" href="#">
+            <img src="{% static 'images/logo.png' %}" class="logo" alt="">
+          </a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                <li
+                    {% if '/' == request.path %}
+                      class="nav-item active mr-3"
+                    {% else %}
+                      class="nav-item mr-3"
+                    {% endif %}
+                    >
+                    <a class="nav-link" href="{% url 'HomePage' %}"><i class="fa fa-home"></i>Home</a>
+                </li>
+
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li
+                    {% if 'poll-list' in request.path %}
+                      class="nav-item active mr-3"
+                    {% else %}
+                      class="nav-item mr-3"
+                    {% endif %}
+                    >
+                    <a class="nav-link" href="{% url 'PollList' %}">Polls</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                    <li
+                        {% if 'signed-In' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                        <a class="nav-link" href="{% url 'signedIn' %}"><i class='fa fa-user'></i> View Profile of: {{user.first_name}}</a>
+
+                    </li>
+                    <li class="nav-item mr-3">
+                        <a href="javascript:{document.getElementById('logoutview').submit()}" class="nav-link">
+                            <i class="fa fa-sign-out"></i> Logout
+                        </a>
+                        <form action="{% url 'Logout' %}" method="POST" id="logoutview">
+                            {% csrf_token %}
+                            <input type="hidden">
+                        </form>
+                    </li>
+                {% else %}
+                    <li
+                        {% if 'newUserRegister' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                        <a class="nav-link" href="{% url 'newUserRegister' %}">
+                            <i class="fa fa-user-plus"></i> Sign Up
+                        </a>
+                    </li>
+                    <li
+                        {% if 'UserLogin' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                        <a class="nav-link" href="{% url 'UserLogin' %}">
+                            <i class="fa fa-sign-in"></i> Sign In
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

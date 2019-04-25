@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block bodyblock %}
+<div class="container-fluid" style="height:520px">
+  <h2>Welcome You are Logged in as: <b>{{user_detail.username}}</b> </h2>
+  <p>If you want you can create your own poll.</p>
+  <div class="row">
+        <div class="col-6">
+            <table>
+                <tr>
+                    <td>User Name:</td>
+                    <td>{{user_detail.username}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{user_detail.email}}</td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>{{user_detail.first_name}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>{{user_detail.last_name}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            {% if Questions is not None %}
+                <h5>Your created polls:</h5>
+                <table>
+                    {% for question in Questions %}
+                    <tr>
+                        <td>{{question.question}}</td>
+                        <td><a class="btn btn-primary btn-block" href="{% url 'ViewVotes' question.id%}">View Votes</a></td>
+                        <td><a class="btn btn-primary btn-block" href="{% url 'DeletePoll' question.id%}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br>
+            {% else %}
+            <p> <b>You do not have any poll. </b> </p> <br>
+            {% endif %}
+            <a class="btn btn-primary btn-block" href="{% url 'newpoll' %}">Make New Poll</a>
+        </div>
+  </div>
+</div>
+{% endblock %}

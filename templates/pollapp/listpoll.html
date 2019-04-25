@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block bodyblock %}
+<div class="container" style="height:520px;" >
+
+    {% if polls %}
+    <h2>List of polls:click on polls and vote</h2>
+        {% for poll in polls%}
+        <ul class="list-group">
+            <li class="list-group-item"> <a href="{% url 'VotePoll' poll.id %}">{{poll.question}}</a> </li>
+        </ul>
+        {% endfor %}
+    {% else %}
+    <h2>There is no poll...</h2>
+    {% endif%}
+</div>
+{% endblock %}

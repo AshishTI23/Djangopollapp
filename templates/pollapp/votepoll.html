@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block bodyblock %}
+<div class="container" style="height:520px;" >
+    <form action="{% url 'VotePoll' poll.id %}" method="post">
+        {% csrf_token %}
+        <h4>Question:&nbsp&nbsp{{poll.question}}&nbsp?</h4>
+        <input id="choice1" type="radio" name="vote" value="{{poll.optionone}}">&nbsp&nbsp&nbsp<label for="choice1">{{poll.optionone}}</label><br>
+        <input id="choice2" type="radio" name="vote" value="{{poll.optiontwo}}">&nbsp&nbsp&nbsp<label for="choice2">{{poll.optiontwo}}</label><br>
+        <input id="choice3" type="radio" name="vote" value="{{poll.optionthree}}">&nbsp&nbsp&nbsp<label for="choice3"> {{poll.optionthree}}</label><br>
+        <input id="choice4" type="radio" name="vote" value="{{poll.optionfour}}">&nbsp&nbsp&nbsp<label for="choice4"> {{poll.optionfour}}</label><br>
+        <input  type="submit" value="Vote Now">
+    </form>
+</div>
+{% endblock %}
